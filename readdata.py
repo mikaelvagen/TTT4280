@@ -33,10 +33,10 @@ data_autocorr=[]
 data_heartbeat=[0,0,0]
 std=[0,0,0]
 expected = [75, 71, 65, 70, 82, 69]
-mindiff=1000
 
-for file in range(1,5):
-    
+
+for file in range(1,7):
+    mindiff=1000
     filename='Målinger/pulse'+str(file)+'.txt'
     data=np.loadtxt(filename)
     #remove the detrend:remove the best straight line fit
@@ -53,12 +53,12 @@ for file in range(1,5):
         axs[1].plot(data_autocorr,color=clr[i])
         axs[1].title.set_text('The autocorrelated puls signal for sample {} BPM'.format(file))
         data_heartbeat[i],std[i]=heartbeat(data_autocorr)
-        newdiff=abs(data_heartbeat[i]-expected[file])
+        newdiff=abs(data_heartbeat[i]-expected[file-1])
         if newdiff < mindiff:
             best=i
             mindiff=newdiff
-        print('The heartbeat of color {} is {:.1f}, with standard deviation {:.1f}'.format(clr[i],data_heartbeat[i],std[i]))
+        print('The heartbeat of color {} is {:.3f}, with standard deviation {:.3f}'.format(clr[i],data_heartbeat[i],std[i]))
     #find the colour with the best pulse, closes to expected and lowest std
-    print("The expected heartbeat for this measurement is {}, the closet color channel is {} with heartbeat {:.2f}".format(expected[file],clr[best],data_heartbeat[best]))
+    print("The expected heartbeat for this measurement is {}, the closet color channel is {} with heartbeat {:.1f}".format(expected[file-1],clr[best],data_heartbeat[best]))
     plt.show()
     
