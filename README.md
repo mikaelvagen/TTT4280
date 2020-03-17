@@ -21,12 +21,11 @@ Measurement 12 is a measurement of a slightly higher pulse after a couple of tri
 __Discussion__:
 
 Two dataprocessing files are included. This is due to the fact that our group cannot meet during these times of\
-COVID-19. Therefore, each contributor has commited one processing script each. "readData.py" writes directly to console,
-while "read_data.py" writes to results.txt. Data is processed using autocorrelation, and these autocorrelation plots are available by running "read_data.py".
+COVID-19. Therefore, each contributor has commited one processing script each. "readData.py" writes directly to console and plots the data from each sample,
+while "read_data.py" writes to results.txt. Data is processed using autocorrelation, and these autocorrelation plots are available by running "readdata.py".
 
 We observe that the results are varying. To begin with, the forehead measurement (11) is quite far off, even though we've tried several flashlights and positionings. Secondly, observe that the reflectance measurements are off. These are conducted using a smartphone camera at Fs = 1/30 Frames/s. The red color channel performs relatively well here, apart from measurement 7, which shows green to be the only one even remotely close (which might be a coincidence. In the case of having to write a report, these reflectance measurements will be retaken, and it seems to be of value to get hold of a small flashlight which can be taped to the finger.
 
-The standard deviation of the measurements per color channel is conducted in "readData.py".
 
 Except deviations explained above from the reflectance measurements, we see that the red color channel yields the most accurate results (which is expected, as a longer wavelength means more transmittance).
 
