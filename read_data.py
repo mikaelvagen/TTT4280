@@ -23,7 +23,7 @@ expected = []
 deviance = []
 std=[]
 
-for file_num in range(1, 7):
+for file_num in range(1, 13):
     filename = "målinger/pulse" + str(file_num) + ".txt"
     data = np.loadtxt(filename)
     data = signal.detrend(data, axis=0)
@@ -45,7 +45,7 @@ meas = [meas - i for meas, i in zip(range(1, len(pulse) + 1, 3), range(0, len(pu
 meas = list(itertools.chain.from_iterable(itertools.repeat(x, 3) for x in meas))
 
 for num_of_meas in range(0, (len(pulse) // 3)):
-    expected = [75, 71, 65, 70, 82, 69]
+    expected = [75, 71, 65, 70, 82, 69, 62, 67, 69, 66, 72, 82]
 expected = list(itertools.chain.from_iterable(itertools.repeat(x, 3) for x in expected))
 
 for v, e in zip(pulse, expected):
