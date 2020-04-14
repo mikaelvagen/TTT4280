@@ -61,45 +61,4 @@ with open("resultater/results.txt", "w") as results: # write results to file
         headers=["Measurement #", "Channels", "Heartbeat", "Expected BPM", "Deviance","Standard deviation"],
         tablefmt="fancy_grid" ))
 
-def calc_snr(sig):
-    """
-    This function calculates SNR for
-    measurements 1 and 11.
-    These is done to see signal to noise
-    ratio of one good signal and one
-    bad signal for comparison.
-    """
-    samples = 1198
-    f = np.linspace(0, 50, samples)
-
-    red_data = sig[:, 0]
-    green_data = sig[:, 1]
-    blue_data = sig[:, 2]
-
-    fft_red = np.fft.fftshift(np.fft.fft(red_data))
-    fft_green = np.fft.fftshift(np.fft.fft(green_data))
-    fft_blue = np.fft.fftshift(np.fft.fft(blue_data))
-
-    plt.plot(f, abs(np.log(fft_red)), color = "Red")
-    plt.plot(f, abs(np.log(fft_green)), color = "Green")
-    plt.plot(f, abs(np.log(fft_blue)), color = "Blue")
-
-    red_sig_bucket = signal.find_peaks(abs(np.log(fft_red[:])), prominence = 6)[0][0]
-    green_sig_bucket = signal.find_peaks(abs(np.log(fft_green)), prominence = 6)[0][0]
-    blue_sig_bucket = signal.find_peaks(abs(np.log(fft_blue)), prominence = 6)[0][0]
-
-    print(f[red_sig_bucket] - 25)
-    print(green_sig_bucket)
-    print(blue_sig_bucket)
-
-    list_sig_buckets = [red_sig_bucket, green_sig_bucket, blue_sig_bucket]
-
-
-
-
-sig_good = np.loadtxt("målinger/pulse1.txt")
-sig_bad = np.loadtxt("målinger/pulse11.txt")
-calc_snr(sig_good)
-#calc_snr(sig_bad)
-
 plt.show()
